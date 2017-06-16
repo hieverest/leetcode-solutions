@@ -1,8 +1,23 @@
-import itertools
+def removeInvalidParentheses(s):
+    def isvalid(s):
+        ctr = 0
+        for c in s:
+            if c == '(':
+                ctr += 1
+            elif c == ')':
+                ctr -= 1
+                if ctr < 0:
+                    return False
+        return ctr == 0
+    level = {s}
+    while True:
+        valid = filter(isvalid, level)
+        if valid:
+            return valid
+        level = {s[:i] + s[i+1:] for s in level for i in range(len(s))}
 
-def combine2(lst, n):
-    return [list(x) for x in itertools.combinations(lst, n)]
+print(list(removeInvalidParentheses(')t))()()bo)')) )
 
-arr = [1, 2, 3, 4]
-
-print(combine2(arr, 3))
+oneSet = ['hehe', 'abcd']
+level =  [s[:i]+s[i+1:] for s in oneSet for i in range(len(s))]
+print(level)
