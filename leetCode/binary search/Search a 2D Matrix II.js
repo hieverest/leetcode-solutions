@@ -6,6 +6,7 @@
 var searchMatrix = function (matrix, target) {
   if(matrix.length === 0 ) return false
   if(matrix[0].length === 0) return false
+    
   let last = matrix[0].length - 1
   for (let i = 0; i < matrix.length; i++) {
 
