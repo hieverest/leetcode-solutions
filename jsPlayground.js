@@ -1,8 +1,5 @@
-let arr = [0]
+let aaa
 
-console.log(arr[-1]>1);
+true && (aaa = 1)
 
-function region() {
-  var whatever = 0
-}
-
+console.log(aaa);
