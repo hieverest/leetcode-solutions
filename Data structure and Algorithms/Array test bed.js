@@ -129,7 +129,7 @@ class CArray {
   mergeArrays(arr, startLeft, stopLeft, startRight, stopRight) {
     var rightArr = new Array(stopRight - startRight + 1);
     var leftArr = new Array(stopLeft - startLeft + 1);
-    k = startRight;
+    let k = startRight;
     for (var i = 0; i < (rightArr.length - 1); ++i) {
       rightArr[i] = arr[k];
       ++k;

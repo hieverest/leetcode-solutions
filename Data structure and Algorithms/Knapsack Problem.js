@@ -30,8 +30,8 @@ function dKnapsack(capacity, size, value, n) {
   for (var i = 0; i <= n + 1; i++) {
     K[i] = [];
   }
-  for (var i = 0; i <= n; i++) {
-    for (var w = 0; w <= capacity; w++) {
+  for (var i = 0; i <= n; i++) { // i-1 is current item
+    for (var w = 0; w <= capacity; w++) { // w is weight
       if (i == 0 || w == 0) {
         K[i][w] = 0;
       }
@@ -42,9 +42,7 @@ function dKnapsack(capacity, size, value, n) {
       else {
         K[i][w] = K[i - 1][w];
       }
-      //putstr(K[i][w] + " ");
     }
-    // print();
   }
   console.log(K);
   return K[n][capacity];
