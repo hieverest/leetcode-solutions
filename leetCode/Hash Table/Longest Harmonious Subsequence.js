@@ -4,7 +4,7 @@
  */
 
  // 效率跟我是一样的, 但是一个三元运算在简洁性上把我秒杀了. 
- // the effiency of both time and space is same as mine. However, the concision beats mine by using the conditional(ternary) operator. 
+ // the efficiency of both time and space is same as mine. However, the concision beats mine by using the conditional(ternary) operator. 
 var findLHS = function (nums) {
   const f = {}
   let res = 0
