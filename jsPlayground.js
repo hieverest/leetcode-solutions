@@ -1,5 +1,7 @@
-let aaa
+let obj = {a: 1, b: 2}
 
-true && (aaa = 1)
-
-console.log(aaa);
+// let cur = obj.a
+// cur = 5
+let cur = obj
+cur.a = 5
+console.log(obj);
