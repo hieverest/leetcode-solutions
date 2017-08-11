@@ -5,7 +5,6 @@
 var repeatedSubstringPattern = function (str) {
   let ss = str+str
   ss = ss.slice(1, ss.length-1)
-  console.log(ss);
   return ss.includes(str)
 };
 // var repeatedSubstringPattern = function (str) {
