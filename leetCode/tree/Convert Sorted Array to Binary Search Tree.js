@@ -17,16 +17,21 @@ class TreeNode {
 }
 
 var sortedArrayToBST = function (nums) {
-  let len = nums.length
-  let resTree = new BST()
-  for(let i =2; i<len;i *=2) {
-    for(let j = 1; j< i; j += 2) {
-      let index = Math.floor(j/i*len)
-      resTree.insert(nums[index])
-    }
+  if(nums.length === 0 ) return null
+  let upper = nums.length - 1, tree = new BST()
+  let convert = (upper, lower) => {
+    if (lower <= upper) {
+      let mid = Math.floor((upper + lower) / 2)
+      tree.insert(nums[mid])
+      convert(upper, mid+1)
+      convert(mid-1, lower)
+      return tree.root
+    } 
   }
-  return resTree.root
+  return convert(upper, 0, tree, nums)
 };
+
+
 
 class BST {
   constructor() {
@@ -40,7 +45,7 @@ class BST {
     } else {
       let current = this.root;
       while (true) {
-        if (data < current.data) {
+        if (data < current.val) {
           if (current.left === null) {
             current.left = n;
             break;
@@ -59,5 +64,6 @@ class BST {
   }
 }
 
-let test = [0,1,2,3,4,5,6,7,8,9,10]
-console.log( sortedArrayToBST(test));
+let testArr = [0, 1, 2, 3, 4, 5, 6]
+console.log(sortedArrayToBST(testArr));
+

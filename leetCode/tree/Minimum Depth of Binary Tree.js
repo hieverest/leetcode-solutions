@@ -13,7 +13,7 @@
 // 用两个变量来判断level, 优过我每个Node中存放level信息
 var minDepth = function(root) {
     if(root === null){ 
-        return 0; 
+        return true; 
     }
     
     let stackToProcess = [root]; 
