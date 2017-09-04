@@ -16,6 +16,21 @@
             "port": 5858,
             "outFiles": []
         },
+        
+        {
+            "name": "Java",
+            "type": "java",
+            "request": "launch",
+            "stopOnEntry": true,
+            "preLaunchTask": "build",                 // Runs the task created above before running this configuration
+            "jdkPath": "${env:JAVA_HOME}/bin",        // You need to set JAVA_HOME enviroment variable
+            "cwd": "${workspaceRoot}",
+            "startupClass": "my.package.MyMainClass", // The class you want to run
+            "sourcePath": ["${workspaceRoot}/src"],   // Indicates where your source (.java) files are
+            "classpath": ["${workspaceRoot}/bin"],    // Indicates the location of your .class files
+            "options": [],                             // Additional options to pass to the java executable
+            "args": []                             // Command line arguments to pass to the startup class
+        },
         {
             "name": "Python",
             "type": "python",

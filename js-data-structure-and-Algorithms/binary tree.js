@@ -7,8 +7,30 @@ class TreeNode {
 }
 
 class binTree {
-  constructor() {
-    this.root = null;
+  constructor(arr) {
+    if (arr.length === 0) this.root = null
+    else {
+      this.root = new TreeNode(arr[0])
+      let idx = 1, node, queue = [this.root]
+      while (idx < arr.length) {
+        node = queue.shift()
+        if (arr[idx] === null) {
+          node.left = null
+        } else {
+          node.left = new TreeNode(arr[idx])
+          queue.push(node.left)
+        }
+        idx++
+        if (idx >= arr.length) break
+        else if (arr[idx] === null) {
+          node.right = null
+        } else {
+          node.right = new TreeNode(arr[idx])
+          queue.push(node.right)
+        }
+        idx++
+      }
+    }
     // this.inOrder = inOrder;
   }
 
@@ -36,6 +58,7 @@ class binTree {
         }
       }
     }
+
   }
 
   inOrder(node) {
@@ -165,31 +188,95 @@ let sumOfTree = (node) => {
   }
 }
 
-let btree = new binTree()
-btree.insert(6)
-btree.insert(3)
-btree.insert(10)
+let _getHeight = function (node) {
+  if (!node) {
+    return 0;
+  }
+  var left = _getHeight(node.left);
+  var right = _getHeight(node.right);
+  return Math.max(left, right) + 1;
+};
+
+let getHeight = function (node) {
+  if (!node) {
+    node = root;
+  }
+  return _getHeight(node);
+};
+
+var minDepth = function (root) {
+  if (root === null) return true;
+  if (!root.left || !root.right) return 1
 
 
+  let stackToProcess = [root];
+  let currentLevel = 1, nodesThisLevel = 1;
+  while (stackToProcess.length > 0) {
+    let temp = stackToProcess.shift();
+    nodesThisLevel--;
 
+    if (temp.left || temp.right) {
+      if (temp.left) {
+        stackToProcess.push(temp.left);
+      }
 
+      if (temp.right) {
+        stackToProcess.push(temp.right);
+      }
+    } else {
+      return currentLevel;
+    }
 
+    if (nodesThisLevel === 0) {
+      if (stackToProcess.length > 0) {
+        currentLevel++;
+        nodesThisLevel = stackToProcess.length;
+      }
+    }
+  }
 
+  return currentLevel;
+};
 
+let exmapleTree = new binTree([1,2, null, 1, 3,  1, null, 1,null, null, 1,1])
 
-let sum = 0;
+// console.log(exmapleTree.root);
+// console.log(exmapleTree.root);
+// console.log(getHeight(exmapleTree.root));
+// console.log(minDepth(exmapleTree.root));
 
-var convertBST = function (root) {
-  convert(root);
-  return root;
+var isBalanced = function (root) {
+  let maxHeight = getHeight(root), minHeight = minDepth(root)
+  if (maxHeight - minHeight < 2) return true
+  else return false
+};
+
+// console.log(isBalanced(exmapleTree.root));
+
+var diameterOfBinaryTree = function(root) {
+  return dfs(root, 0)
+};
+
+let calHalfSideDiameter = node => {
+  if(node === null) return 0
+  let diameter = 0, left = 0, right = 0
+  if(node.left) left = calHalfSideDiameter(node.left) +1
+  if(node.right) right = calHalfSideDiameter(node.right) +1
+  diameter = Math.max(left, right)
+  return diameter
 }
 
-var convert = function(cur) {
-  if (cur == null) return;
-  convert(cur.right);
-  cur.val += sum;
-  sum = cur.val;
-  convert(cur.left);
+let dfs = (node, max) =>　{
+  if(node ===null) return max
+  let diameter = 0
+  if(node.left) diameter += calHalfSideDiameter(node.left) + 1
+  if(node.right) diameter += calHalfSideDiameter(node.right) + 1
+
+  max  = Math.max(max, diameter)
+
+  return Math.max(dfs(node.left, max), dfs(node.right, max))
 }
 
-console.log(convertBST(btree.root))
+// console.log(diameterOfBinaryTree(exmapleTree.root))
+console.log(calHalfSideDiameter(exmapleTree.root.left.right));
+console.log(diameterOfBinaryTree(exmapleTree.root));
