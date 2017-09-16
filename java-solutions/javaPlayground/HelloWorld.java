@@ -1,6 +1,9 @@
-class HelloWorld {
+import java.util.*;
 
+class HelloWorld {
+    static String test = "OK then.";
     public static void main(String[] args) {
-        System.out.print("Hello World");
+        String[] strArr = test.split(" ");
+        System.out.print(Arrays.toString(strArr));
     }
 }

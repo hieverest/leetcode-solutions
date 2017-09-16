@@ -11,7 +11,7 @@ class ReverseWordsInAString {
 
 class Solution {
     public String reverseWords(String s) {
-        String[] strArr = s.trim().split("\\s+");
+        String[] strArr = s.trim().split("\\s+");  // first slash for escape the '\', which means '\\' represents '\', and '\s' represents white space in regex. 
         StringBuilder res = new StringBuilder();
         for( int i = strArr.length-1; i >= 0; i--) {
             res.append(strArr[i].trim());

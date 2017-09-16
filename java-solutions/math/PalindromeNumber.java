@@ -11,8 +11,6 @@ class Solution {
             int left = x / div;
             int right = x % 10;
             if( left != right){ 
-                System.out.println(left);
-                System.out.println(right);
                 return false;
             }
             x = (x % div) / 10;
