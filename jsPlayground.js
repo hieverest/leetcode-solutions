@@ -1,3 +1,4 @@
-let a = 12321
-
-console.log(a);
+const str = "abcd";
+for (let c of str) {
+  console.log(c);
+}

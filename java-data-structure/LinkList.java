@@ -10,7 +10,7 @@ class Node {
     }
 }
 
-public class LinkedList {
+public class LinkList {
 
     public Node head;
 
@@ -134,7 +134,7 @@ public class LinkedList {
         if (head == null || head.next == null)
             return null;
         Node front = head.next.next;
-        Node back = head;
+        Node back = head.next;
         while (front != null && front != back) {
             front = front.next.next;
             back = back.next;
@@ -188,19 +188,35 @@ public class LinkedList {
         return list;
     }
 
+    public static Node deleteDuplicates(Node head) {
+        if(head == null || head.next == null) return head;
+        
+        Node cur = head;
+        Node next = cur.next;
+        System.out.println(cur.data + " " + next.data);
+        while(next != null) {
+            while(next != null && cur.data == next.data) {
+                next = next.next;
+            }
+            cur.next = next;
+            cur = next;
+            if(next != null) next = cur.next;
+        }
+        return head;
+        
+    }
+
     public static void main(String[] args) {
         Solution test = new Solution();
 
-        int[] nums = {1};
+        int[] nums = {1, 1};
         LinkedList list1 = test.initalLinkedList(nums);
         list1.printSelf();
 
-        int[] nums1 = {  };
-        LinkedList list2 = test.initalLinkedList(nums1);
-        list2.printSelf();
+        deleteDuplicates(list1.head);
+        test.printLinkedList(list1.head);
 
-        Node testNode = test.zipMerge(list1, list2);
-        test.printLinkedList(testNode);
+        
 
     }
 }

@@ -4,9 +4,8 @@ class Sorting {
 
     public static void main(String[] args) {
         int[] arr = { 6, 5, 3, 1, 8, 7, 2, 4 };
-        int res = findKthLargestNum(arr, 0, 7, 8);
-
-        System.out.println(res);
+        mergeSort(arr);
+        System.out.println(Arrays.toString(arr));
 
     }
 

@@ -1,46 +1,18 @@
-// {
-//   // See https://go.microsoft.com/fwlink/?LinkId=733558
-//   // for the documentation about the tasks.json format
-//   "version": "2.0.0",
-//   "tasks": [
-//     {
-//       "taskName": "echo",
-//       "type": "shell",
-//       "command": "echo Hello"
-//     }
-//   ]
-// }
 {
     "version": "2.0.0",
-    "configurations": [
+    "type": "shell",
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+    },
+    "isBackground": true,
+    "tasks": [
         {
-            "name": "Java",
-            "type": "java",
-            "request": "launch",
-            "stopOnEntry": true,
-            "cwd": "${fileDirname}", // ${fileDirname}: the current opened file's dirname
-            "startupClass": "com.github.vscode.${fileBasename}", // ${fileBasename}: the current opened file's basename
-            "options": [
-                "-classpath",
-                "${workspaceRoot}/target/classes" // ${fileDirname}: the current opened file's dirname
-            ],
-            "jdkPath": "${env.JAVA_HOME}/bin", // ${env.JAVA_HOME}: reference environment variables
-            "preLaunchTask": "compile"
-        },
-        {
-            "name": "Java Console App",
-            "type": "java",
-            "request": "launch",
-            "stopOnEntry": true,
-            "cwd": "${fileDirname}",
-            "startupClass": "${fileBasename}",
-            "options": [
-                "-classpath",
-                "\"${fileDirname};.\""
-            ],
-            "externalConsole": true,
-            "jdkPath": "${env.JAVA_HOME}/bin",
-            "preLaunchTask": "compile"
+            "taskName": "build",
+            "args": ["-g", "${file}"],
+            "command": "javac"
         }
     ]
 }
