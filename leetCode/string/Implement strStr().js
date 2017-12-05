@@ -15,24 +15,28 @@ var strStr = function (haystack, needle) {
 }
 
 // 我的答案
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+// 我自己这样写, 在一个逻辑中推下来更容易理解一点
+
 var strStr = function (haystack, needle) {
-  if(needle.length === 0 ) return 0
-  if(haystack.length === 0) return -1
-  let index
-  for (let i = 0; i < haystack.length; i++) {
-    if (needle[0] === haystack[i]) {
-      index = i
-      if(needle.length === 1) return index
-      for (let j = 1; j < needle.length; j++) {
-        if(needle[j] !== haystack[j+i]) {
-          break
-        }
-        else if(j === needle.length-1) return index
-      }
+  if (haystack.length === 0 && needle.length === 0) return 0; // edge case "" and ""  result is 0;
+  
+for (let i = 0; i < haystack.length; i++) {
+    let j = 0;
+    for (; j < needle.length; j++) {
+        if ( (i+j) >= haystack.length) -1; // means the remaining of haystack is shorter than needle.
+        if (haystack[i+j] !== needle[j]) break; 
     }
-  }
-  return -1
-};
+  if (j === needle.length) return i; // When j reach the last char, means they fully paired.
+}
+  return -1;
+}
+
+
 
 console.log(strStr("mississippi", "issip"));
 console.log(strStr('a', 'a'));
