@@ -41,3 +41,17 @@ module.exports = {
     printList,
     buildList
 }
+
+const test = buildList([1,2,3,4,5,6]);
+
+const getLength = (head) => {
+    let fast = head;
+    let count = 0;
+    while (fast !== null && fast.next !== null) {
+        fast = fast.next.next;
+        count++;
+    }
+    return count * 2;
+}
+
+console.log(getLength(test));
